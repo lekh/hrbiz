@@ -26,6 +26,8 @@ class EmployeeControllerSpec extends Specification {
         params["type"] = 'full-time'
         params["dateHired"] = new Date("01/01/2012")
         params["annualSalary"] = 60000
+        params["username"] = 'bng'
+        params["password"] = 'password'
     }
 
     void "Test the index action returns the correct model"() {

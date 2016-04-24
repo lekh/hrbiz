@@ -24,7 +24,7 @@ class EmployeeSpec extends Specification {
         when:
             Employee e = new Employee(department: department, firstName: 'Bob', lastName: 'Ng', dob: new Date("02/01/1986"),
                 ssn: 1111111111, email: 'bng@a1company.com', title: 'Auditor', type: 'full-time',
-                dateHired: new Date("01/01/2012"), annualSalary: 40000)
+                dateHired: new Date("01/01/2012"), annualSalary: 40000, username: 'bng', password: 'password')
         then:
             e.validate()
     }
@@ -33,7 +33,7 @@ class EmployeeSpec extends Specification {
         when:
             Employee e = new Employee(department: department, firstName: 'Bob', lastName: 'Ng', dob: new Date("02/01/1986"),
                 ssn: 1111111111, email: 'bng@a1company.com', title: 'Auditor', type: 'someUnknownTypes',
-                dateHired: new Date("01/01/2012"), annualSalary: 40000)
+                dateHired: new Date("01/01/2012"), annualSalary: 40000, username: 'bng', password: 'password')
         then:
             !e.validate()
     }
@@ -42,7 +42,7 @@ class EmployeeSpec extends Specification {
         when:
             Employee e = new Employee(department: department, firstName: 'Bob', lastName: 'Ng', dob: new Date("02/01/2016"),
                 ssn: 1111111111, email: 'bng@a1company.com', title: 'Auditor', type: 'full-time',
-                dateHired: new Date("01/01/2012"), annualSalary: 40000)
+                dateHired: new Date("01/01/2012"), annualSalary: 40000, username: 'bng', password: 'password')
         then:
             !e.validate()
     }
@@ -51,7 +51,7 @@ class EmployeeSpec extends Specification {
         when:
             Employee e = new Employee(department: department, firstName: 'Bob', lastName: 'Ng', dob: new Date("02/01/1986"),
                 ssn: 1111111111, email: 'someInvalidAddr', title: 'Auditor', type: 'full-time',
-                dateHired: new Date("01/01/2012"), annualSalary: 40000)
+                dateHired: new Date("01/01/2012"), annualSalary: 40000, username: 'bng', password: 'password')
         then:
             !e.validate()
     }

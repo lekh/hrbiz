@@ -1,6 +1,6 @@
 package cscie56.project
 
-class Employee {
+class Employee extends User {
 
     String firstName
     String middleName
