@@ -12,7 +12,10 @@ class DepartmentControllerSpec extends Specification {
     def populateValidParams(params) {
         assert params != null
         // TODO: Populate valid properties like...
-        //params["name"] = 'someValidName'
+
+        Company company = new Company(name: 'A1 Company')
+        params["name"] = 'Accounting'
+        params["company"] = company
     }
 
     void "Test the index action returns the correct model"() {

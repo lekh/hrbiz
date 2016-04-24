@@ -12,7 +12,20 @@ class EmployeeControllerSpec extends Specification {
     def populateValidParams(params) {
         assert params != null
         // TODO: Populate valid properties like...
-        //params["name"] = 'someValidName'
+
+        Company company = new Company(name: 'A1 Company')
+        Department department = new Department(company: company, name: 'Accounting')
+
+        params["department"] = department
+        params["firstName"] = 'Bob'
+        params["lastName"] = 'Ng'
+        params["dob"] = new Date("02/01/1986")
+        params["ssn"] = 1111111111
+        params["email"] = 'bng@a1company.com'
+        params["title"] = 'Auditor'
+        params["type"] = 'full-time'
+        params["dateHired"] = new Date("01/01/2012")
+        params["annualSalary"] = 60000
     }
 
     void "Test the index action returns the correct model"() {
