@@ -11,6 +11,8 @@ class EmployeeController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+    def springSecurityService
+
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond Employee.list(params), model:[employeeInstanceCount: Employee.count()]
@@ -18,6 +20,44 @@ class EmployeeController {
 
     def show(Employee employeeInstance) {
         respond employeeInstance
+    }
+
+    def list() {
+        Department department
+        if (params.departmentId != null) {
+            department = Department.findById(params.departmentId)
+        } else {
+        }
+        println("Department : " + department)
+        ['department': department]
+    }
+
+    def showBasicInfo() {
+        Employee employee = Employee.findById(params.id)
+        render(template: "modalBasicInfo", model: [employee: employee])
+    }
+
+    def profile() {
+        User user = springSecurityService.currentUser
+        Employee employee = Employee.findById(user.id)
+        ['profile': employee]
+    }
+
+    def ajaxSaveAboutMe() {
+        String aboutMe = params.aboutMe as String
+
+        // Validate
+        if (aboutMe == null || aboutMe.trim().isEmpty()) {
+            render status: 400
+        }
+
+        // Save
+        User user = springSecurityService.currentUser
+        Employee employee = Employee.findById(user.id)
+        employee.aboutMe = aboutMe
+        employee.save(flush: true)
+
+        render status: 204
     }
 
     @Secured(['ROLE_ADMIN', 'ROLE_MANAGER'])

@@ -8,11 +8,13 @@ class Employee extends User {
     Date dob
     long ssn
     String email
+    String phoneNumber
     String title
     String type
     Date dateHired
     int annualSalary
     String pictureLocation
+    String aboutMe
 
     Employee manager
     Department department
@@ -26,6 +28,7 @@ class Employee extends User {
         dob(nullable: false)
         ssn size: 10
         email(nullable: false, email: true)
+        phoneNumber nullable: true
         title nullable: false
         type inList: ['full-time', 'part-time', 'intern', 'contractor']
 
@@ -39,10 +42,26 @@ class Employee extends User {
         pictureLocation nullable: true
         manager nullable: true
         department nullable: false
+        aboutMe nullable: true
     }
 
     @Override
     public String toString() {
         "$firstName $lastName"
+    }
+
+    public String getName() {
+        if (middleName) {
+            return "$firstName $middleName $lastName"
+        } else {
+            return "$firstName $lastName"
+        }
+    }
+
+    public String getSeniority() {
+        int years = new Date().year - dateHired.year
+        int months =  new Date().year - dateHired.month
+        int monthMod = months % 12
+        return "$years years $monthMod months"
     }
 }

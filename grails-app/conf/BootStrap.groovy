@@ -36,7 +36,9 @@ class BootStrap {
 
         Employee e1 = new Employee(department: department, firstName: 'Bob', lastName: 'Ng', dob: new Date("02/01/1986"),
                 ssn: 1111111111, email: 'bng@a1company.com', title: 'Auditor', type: 'full-time',
-                dateHired: new Date("01/01/2012"), annualSalary: 40000, username: 'bng', password: 'password').save()
+                dateHired: new Date("01/01/2012"), annualSalary: 40000, username: 'bng', password: 'password')
+        e1.pictureLocation = "employees/1.png"
+        e1.save()
 
         UserRole.create(e1, USER_ROLE, true)
     }

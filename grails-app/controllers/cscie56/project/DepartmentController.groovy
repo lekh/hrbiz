@@ -11,6 +11,8 @@ class DepartmentController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+    def springSecurityService
+
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond Department.list(params), model:[departmentInstanceCount: Department.count()]
@@ -18,6 +20,14 @@ class DepartmentController {
 
     def show(Department departmentInstance) {
         respond departmentInstance
+    }
+
+    def list() {
+        User user = springSecurityService.currentUser
+        Employee employee = Employee.findById(user.id)
+        List<Department> departments = Department.findAllByCompany(employee.department.company)
+
+        ['departments': departments]
     }
 
     @Secured('ROLE_ADMIN')
