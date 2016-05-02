@@ -32,6 +32,7 @@
                 <li><a href="/hrbiz/department/list">Department</a></li>
                 <li><a href="/hrbiz/employee/list">Employee</a></li>
                 <li><a href="/hrbiz/employee/profile">Profile</a></li>
+                <li><g:remoteLink class="logout" controller="logout" method="post" asynchronous="false" onSuccess="location.reload()">Logout</g:remoteLink></li>
             </ul>
         </div>
     </nav>
