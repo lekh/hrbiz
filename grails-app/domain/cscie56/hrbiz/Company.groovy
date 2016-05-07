@@ -1,4 +1,4 @@
-package cscie56.project
+package cscie56.hrbiz
 
 class Company {
 

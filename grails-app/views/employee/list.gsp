@@ -9,19 +9,21 @@
 <div class="container-fluid">
 
     <div id="department">
-        <h2>Employees</h2>
+        <h2>${listType} Employees</h2>
 
-        <table class='table table-bordered table-striped table-hover'>
-            <theader>
+        <!--<table id="employeeTable" class='table table-bordered table-striped table-hover dt-responsive nowrap'>-->
+        <table id="employeeTable" class="table display">
+            <thead>
                 <tr id='table-header'>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Phone</th>
                     <th>Title</th>
+                    <th>Department</th>
                     <th>Type</th>
                     <th>Seniority</th>
                 </tr>
-            </theader>
+            </thead>
             <tbody>
                 <employee:list department="${department}" />
             </tbody>
@@ -37,6 +39,21 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+
+    $(document).ready(function(){
+        $('#employeeTable').DataTable({
+            paging: false
+        });
+    });
+
+    // For modal
+    $('body').on('hidden.bs.modal', '.modal', function () {
+        $(this).removeData('bs.modal');
+    });
+
+</script>
 
 </body>
 </html>

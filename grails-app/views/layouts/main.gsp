@@ -19,6 +19,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'></script>
 
+    <!-- Data table -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css" />
+    <script src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+
     <g:layoutHead/>
 </head>
 
@@ -32,7 +36,15 @@
                 <li><a href="/hrbiz/department/list">Department</a></li>
                 <li><a href="/hrbiz/employee/list">Employee</a></li>
                 <li><a href="/hrbiz/employee/profile">Profile</a></li>
-                <li><g:remoteLink class="logout" controller="logout" method="post" asynchronous="false" onSuccess="location.reload()">Logout</g:remoteLink></li>
+
+                <sec:ifAnyGranted roles="ROLE_MANAGER">
+                    <li><a href="/hrbiz/manager">Manager Menu</a></li>
+                </sec:ifAnyGranted>
+                <sec:ifAnyGranted roles="ROLE_ADMIN">
+                    <li><a href="/hrbiz/admin">Admin Menu</a></li>
+                </sec:ifAnyGranted>
+
+                <li><g:remoteLink class="logout" controller="logout" method="post" asynchronous="false" onSuccess="location.href('/hrbiz/')">Logout</g:remoteLink></li>
             </ul>
         </div>
     </nav>

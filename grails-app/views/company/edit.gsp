@@ -1,4 +1,4 @@
-<%@ page import="cscie56.project.Company" %>
+<%@ page import="cscie56.hrbiz.Company" %>
 <!DOCTYPE html>
 <html>
 	<head>

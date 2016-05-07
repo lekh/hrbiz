@@ -1,5 +1,8 @@
-package cscie56.project
+package cscie56.hrbiz
 
+import cscie56.hrbiz.Department
+import cscie56.hrbiz.Employee
+import cscie56.hrbiz.User
 import grails.plugin.springsecurity.annotation.Secured
 
 import static org.springframework.http.HttpStatus.*
@@ -24,12 +27,12 @@ class EmployeeController {
 
     def list() {
         Department department
+        String listType = 'All'
         if (params.departmentId != null) {
             department = Department.findById(params.departmentId)
-        } else {
+            listType = department.name
         }
-        println("Department : " + department)
-        ['department': department]
+        ['department': department, 'listType': listType]
     }
 
     def showBasicInfo() {

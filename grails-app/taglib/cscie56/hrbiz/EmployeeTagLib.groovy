@@ -1,8 +1,8 @@
-package hrbiz
+package cscie56.hrbiz
 
-import cscie56.project.Company
-import cscie56.project.Department
-import cscie56.project.Employee
+import cscie56.hrbiz.Company
+import cscie56.hrbiz.Department
+import cscie56.hrbiz.Employee
 
 class EmployeeTagLib {
 
@@ -29,6 +29,7 @@ class EmployeeTagLib {
             employee << ['email': it.email]
             employee << ['phone': it.phoneNumber]
             employee << ['title': it.title]
+            employee << ['department': it.department.name]
             employee << ['type': it.type]
             employee << ['seniority': it.getSeniority()]
 

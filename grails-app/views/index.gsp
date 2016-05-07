@@ -2,22 +2,49 @@
 <html>
 <head>
     <meta name="layout" content="main"/>
-    <title>Welcome to HRbiz</title>
+    <title>Welcome to ${company}</title>
 </head>
 
 <body>
-<div id="page-body" role="main">
-    <h1>Welcome to HRbiz</h1>
-
-    <p>HRbiz is an application to manage employees in a small company. This is a final project for CSCI E-56. At the moment
-    this is the default page. Below is a list of controllers that are currently deployed in this application,
-    click on each to execute its default action:</p>
-</div>
 
 <sec:ifNotLoggedIn>
+    <div id="page-body" role="main">
+        <h1>Welcome to HRBIZ</h1>
+        <p>Final project for CSCI E-56. The purpose of this project is to create a employee portal for small business.</p>
+    </div>
     <div>
         <g:link controller="login" action="auth">Click here to login to your company profile</g:link>
     </div>
 </sec:ifNotLoggedIn>
+
+<sec:ifLoggedIn>
+    <div id="page-body" role="main">
+        <h1>Welcome to ${company}</h1>
+        <p>Final project for CSCI E-56. The purpose of this project is to create a employee portal for small business.</p>
+
+        <h2>About Us</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pulvinar tortor ut tincidunt rhoncus.
+        Sed ligula mi, elementum vel risus id, fermentum tincidunt sem. Cras vitae fermentum nisi. Suspendisse
+        vel ligula eu turpis mollis accumsan ac et lectus. Proin luctus mi at odio posuere, sed porttitor metus
+        ornare. Suspendisse potenti. Vestibulum bibendum tincidunt tellus et fringilla. Vivamus vel nisi et purus
+        pretium ultrices nec eu velit. Quisque sed ullamcorper lorem. Pellentesque semper enim sed urna fermentum,
+        sit amet scelerisque mi placerat. Integer ultricies commodo justo, vel tempus urna malesuada nec. Integer
+        quis lorem libero. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nullam blandit sed nibh
+        lacinia tincidunt.</p>
+
+        <h2>Employee Policy</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pulvinar tortor ut tincidunt rhoncus.
+        Sed ligula mi, elementum vel risus id, fermentum tincidunt sem. Cras vitae fermentum nisi. Suspendisse
+        vel ligula eu turpis mollis accumsan ac et lectus. Proin luctus mi at odio posuere, sed porttitor metus
+        ornare. Suspendisse potenti. Vestibulum bibendum tincidunt tellus et fringilla. Vivamus vel nisi et purus
+        pretium ultrices nec eu velit. Quisque sed ullamcorper lorem. Pellentesque semper enim sed urna fermentum,
+        sit amet scelerisque mi placerat. Integer ultricies commodo justo, vel tempus urna malesuada nec. Integer
+        quis lorem libero. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nullam blandit sed nibh
+        lacinia tincidunt.</p>
+
+        <h2>Holiday Calendar</h2>
+
+    </div>
+</sec:ifLoggedIn>
 </body>
 </html>

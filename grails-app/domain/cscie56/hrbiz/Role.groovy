@@ -1,4 +1,4 @@
-package cscie56.project
+package cscie56.hrbiz
 
 import groovy.transform.EqualsAndHashCode
 import groovy.transform.ToString

@@ -1,7 +1,6 @@
-package cscie56.project
+package cscie56.hrbiz
 
-
-
+import cscie56.hrbiz.CompanyController
 import grails.test.mixin.*
 import spock.lang.*
 

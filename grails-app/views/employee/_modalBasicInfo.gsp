@@ -21,7 +21,7 @@
                     <dd><a href="mailto:${employee.email}">${employee.email}</a></dd>
 
                     <dt>Phone:</dt>
-                    <dd>${employee.phoneNumber}</dd>
+                    <dd><td><phone:formatNumber number="${employee.phoneNumber}" /></td></dd>
 
                     <dt>Title:<dt>
                     <dd>${employee.title}</dd>

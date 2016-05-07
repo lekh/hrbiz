@@ -1,5 +1,8 @@
-package cscie56.project
+package cscie56.hrbiz
 
+import cscie56.hrbiz.Department
+import cscie56.hrbiz.Employee
+import cscie56.hrbiz.User
 import grails.plugin.springsecurity.annotation.Secured
 
 import static org.springframework.http.HttpStatus.*

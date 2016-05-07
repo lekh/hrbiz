@@ -1,4 +1,4 @@
-package cscie56.project
+package cscie56.hrbiz
 
 class Department {
 
@@ -9,7 +9,7 @@ class Department {
     static belongsTo = [company: Company]
 
     static constraints = {
-        name inList: ['Accounting', 'IT', 'Finance', 'Engineer', 'HR', 'Management']
+        name inList: ['Accounting', 'Technology', 'Finance', 'HR', 'Management']
     }
 
     @Override

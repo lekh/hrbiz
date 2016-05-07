@@ -1,4 +1,4 @@
-package cscie56.project
+package cscie56.hrbiz
 
 class Employee extends User {
 
@@ -45,10 +45,15 @@ class Employee extends User {
         aboutMe nullable: true
     }
 
+    /*
     @Override
     public String toString() {
         "$firstName $lastName"
     }
+    */
+
+
+
 
     public String getName() {
         if (middleName) {
@@ -63,5 +68,28 @@ class Employee extends User {
         int months =  new Date().year - dateHired.month
         int monthMod = months % 12
         return "$years years $monthMod months"
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", middleName='" + middleName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", dob=" + dob +
+                ", ssn=" + ssn +
+                ", email='" + email + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", title='" + title + '\'' +
+                ", type='" + type + '\'' +
+                ", dateHired=" + dateHired +
+                ", annualSalary=" + annualSalary +
+                ", pictureLocation='" + pictureLocation + '\'' +
+                ", aboutMe='" + aboutMe + '\'' +
+                ", manager=" + manager +
+                ", department=" + department +
+                ", version=" + version +
+                "} " + super.toString();
     }
 }

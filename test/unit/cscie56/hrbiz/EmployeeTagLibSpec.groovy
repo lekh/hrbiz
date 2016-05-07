@@ -1,6 +1,5 @@
-package hrbiz
+package cscie56.hrbiz
 
-import cscie56.project.Employee
 import grails.test.mixin.TestFor
 import spock.lang.Specification
 

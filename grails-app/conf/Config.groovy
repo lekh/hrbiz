@@ -114,13 +114,19 @@ log4j.main = {
            'org.springframework',
            'org.hibernate',
            'net.sf.ehcache.hibernate'
+
+    debug 'org.hibernate.SQL',
+            'groovy.sql.Sql'
+    trace 'org.hibernate.type.descriptior.sql.BasicBinder'
 }
 
+grails.plugin.springsecurity.logout.postOnly = false
+logout.afterLogoutUrl = "/"
 
 // Added by the Spring Security Core plugin:
-grails.plugin.springsecurity.userLookup.userDomainClassName = 'cscie56.project.User'
-grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'cscie56.project.UserRole'
-grails.plugin.springsecurity.authority.className = 'cscie56.project.Role'
+grails.plugin.springsecurity.userLookup.userDomainClassName = 'cscie56.hrbiz.User'
+grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'cscie56.hrbiz.UserRole'
+grails.plugin.springsecurity.authority.className = 'cscie56.hrbiz.Role'
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/':                ['permitAll'],
 	'/index':           ['permitAll'],
@@ -130,5 +136,5 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/**/css/**':       ['permitAll'],
 	'/**/images/**':    ['permitAll'],
 	'/**/favicon.ico':  ['permitAll'],
-    '/dbconsole/**':    ['ROLE_USER']
+    '/dbconsole/**':    ['permitAll']
 ]

@@ -26,7 +26,7 @@
                     <dd><a href="mailto:${profile.email}">${profile.email}</a></dd>
 
                     <dt>Phone:</dt>
-                    <dd>${profile.phoneNumber}</dd>
+                    <dd><phone:formatNumber number="${profile.phoneNumber}" /></dd>
 
                     <dt>Title:<dt>
                     <dd>${profile.title}</dd>
