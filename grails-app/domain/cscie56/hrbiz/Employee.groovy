@@ -2,31 +2,43 @@ package cscie56.hrbiz
 
 class Employee extends User {
 
+    Employee manager
+    Department department
+    EmployeeAddress address
+
     String firstName
     String middleName
     String lastName
     Date dob
-    long ssn
     String email
     String phoneNumber
     String title
     String type
     Date dateHired
-    int annualSalary
+    Integer annualSalary
     String pictureLocation
     String aboutMe
 
-    Employee manager
-    Department department
+    Integer ssn
+    String bankName
+    String accountNo
+    String routingNo
 
     static belongsTo = [department: Department]
 
+    static hasOne = [address: EmployeeAddress]
+
+    static hasMany = [paychecks: EmployeePaycheck]
+
     static constraints = {
+        manager nullable: true
+        department nullable: false
+        address nullable: true
+
         firstName(blank: false, nullable: false)
         middleName nullable: true
         lastName(blank: false, nullable: false)
         dob(nullable: false)
-        ssn size: 10
         email(nullable: false, email: true)
         phoneNumber nullable: true
         title nullable: false
@@ -40,20 +52,18 @@ class Employee extends User {
 
         annualSalary min: 0     // For unpaid interns
         pictureLocation nullable: true
-        manager nullable: true
-        department nullable: false
         aboutMe nullable: true
+
+        ssn size: 10
+        bankName nullable: true
+        accountNo nullable: true
+        routingNo nullable: true
     }
 
-    /*
     @Override
     public String toString() {
         "$firstName $lastName"
     }
-    */
-
-
-
 
     public String getName() {
         if (middleName) {
@@ -68,28 +78,5 @@ class Employee extends User {
         int months =  new Date().year - dateHired.month
         int monthMod = months % 12
         return "$years years $monthMod months"
-    }
-
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", middleName='" + middleName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", dob=" + dob +
-                ", ssn=" + ssn +
-                ", email='" + email + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", title='" + title + '\'' +
-                ", type='" + type + '\'' +
-                ", dateHired=" + dateHired +
-                ", annualSalary=" + annualSalary +
-                ", pictureLocation='" + pictureLocation + '\'' +
-                ", aboutMe='" + aboutMe + '\'' +
-                ", manager=" + manager +
-                ", department=" + department +
-                ", version=" + version +
-                "} " + super.toString();
     }
 }

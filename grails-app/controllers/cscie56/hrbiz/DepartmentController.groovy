@@ -1,12 +1,9 @@
 package cscie56.hrbiz
 
-import cscie56.hrbiz.Department
-import cscie56.hrbiz.Employee
-import cscie56.hrbiz.User
 import grails.plugin.springsecurity.annotation.Secured
+import grails.transaction.Transactional
 
 import static org.springframework.http.HttpStatus.*
-import grails.transaction.Transactional
 
 @Secured('ROLE_USER')
 @Transactional(readOnly = true)
@@ -25,11 +22,12 @@ class DepartmentController {
         respond departmentInstance
     }
 
+    /**
+     * List all departments. Each department will have a link to list all of its employees
+     */
     def list() {
-        User user = springSecurityService.currentUser
-        Employee employee = Employee.findById(user.id)
-        List<Department> departments = Department.findAllByCompany(employee.department.company)
-
+        Employee employee = Employee.findById(springSecurityService.currentUserId)
+        List<Department> departments = Department.findAllByCompany(employee?.department?.company)
         ['departments': departments]
     }
 

@@ -1,12 +1,10 @@
 package cscie56.hrbiz
 
-import cscie56.hrbiz.Department
-import cscie56.hrbiz.Employee
-import cscie56.hrbiz.User
+import grails.plugin.cache.Cacheable
 import grails.plugin.springsecurity.annotation.Secured
+import grails.transaction.Transactional
 
 import static org.springframework.http.HttpStatus.*
-import grails.transaction.Transactional
 
 @Secured('ROLE_USER')
 @Transactional(readOnly = true)
@@ -15,6 +13,7 @@ class EmployeeController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def springSecurityService
+    def employeeService
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
@@ -25,50 +24,67 @@ class EmployeeController {
         respond employeeInstance
     }
 
+    /**
+     * List all employees. If department id is passed, it'll list all employees within
+     * that department
+     */
+    @Cacheable('employees')
     def list() {
-        Department department
-        String listType = 'All'
-        if (params.departmentId != null) {
-            department = Department.findById(params.departmentId)
-            listType = department.name
-        }
-        ['department': department, 'listType': listType]
+        employeeService.listEmployee(Department.findById(params.departmentId))
     }
 
+    /**
+     * Show basic employee info. This will not show salary, bank account
+     * and other sensitive information
+     */
     def showBasicInfo() {
         Employee employee = Employee.findById(params.id)
-        render(template: "modalBasicInfo", model: [employee: employee])
-    }
-
-    def profile() {
-        User user = springSecurityService.currentUser
-        Employee employee = Employee.findById(user.id)
-        ['profile': employee]
-    }
-
-    def ajaxSaveAboutMe() {
-        String aboutMe = params.aboutMe as String
-
-        // Validate
-        if (aboutMe == null || aboutMe.trim().isEmpty()) {
-            render status: 400
+        if (employee != null) {
+            render(template: "modalBasicInfo", model: [employee: employee])
+        } else {
+            render status: 404
         }
+    }
 
-        // Save
-        User user = springSecurityService.currentUser
-        Employee employee = Employee.findById(user.id)
-        employee.aboutMe = aboutMe
-        employee.save(flush: true)
+    /**
+     * Show currently logged in user profile. This will show everything about the user
+     */
+    def profile() {
+        Employee employee = Employee.findById(springSecurityService.currentUserId)
+        def address = EmployeeAddress.findByEmployee(employee)
+        if (address == null) {
+            address = ''
+        }
+        ['profile': employee, 'address': address]
+    }
 
+    /**
+     * Displays modal for editing basic information
+     */
+    def editProfile() {
+        Employee employee = Employee.findById(springSecurityService.currentUserId)
+        EmployeeAddress address = EmployeeAddress.findByEmployee(employee)
+
+        if (address == null) {
+            address = new EmployeeAddress(employee: employee)
+        }
+        render(template: "modalEditProfile", model: [employee: employee, address: address])
+    }
+
+    /**
+     * Updated basic information on currently logged in user
+     */
+    def ajaxSaveProfile() {
+        employeeService.saveProfile(params)
         render status: 204
     }
 
-    @Secured(['ROLE_ADMIN', 'ROLE_MANAGER'])
+    @Secured(['ROLE_ADMIN', 'ROLE_HR'])
     def create() {
         respond new Employee(params)
     }
 
-    @Secured(['ROLE_ADMIN', 'ROLE_MANAGER'])
+    @Secured(['ROLE_ADMIN', 'ROLE_HR'])
     @Transactional
     def save(Employee employeeInstance) {
         if (employeeInstance == null) {
@@ -92,12 +108,12 @@ class EmployeeController {
         }
     }
 
-    @Secured(['ROLE_ADMIN', 'ROLE_MANAGER'])
+    @Secured(['ROLE_ADMIN', 'ROLE_HR'])
     def edit(Employee employeeInstance) {
         respond employeeInstance
     }
 
-    @Secured(['ROLE_ADMIN', 'ROLE_MANAGER'])
+    @Secured(['ROLE_ADMIN', 'ROLE_HR'])
     @Transactional
     def update(Employee employeeInstance) {
         if (employeeInstance == null) {
@@ -121,7 +137,7 @@ class EmployeeController {
         }
     }
 
-    @Secured(['ROLE_ADMIN', 'ROLE_MANAGER'])
+    @Secured(['ROLE_ADMIN', 'ROLE_HR'])
     @Transactional
     def delete(Employee employeeInstance) {
 

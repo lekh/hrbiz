@@ -23,6 +23,15 @@
 			</g:if>
 			<ol class="property-list department">
 			
+				<g:if test="${departmentInstance?.name}">
+				<li class="fieldcontain">
+					<span id="name-label" class="property-label"><g:message code="department.name.label" default="Name" /></span>
+					
+						<span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${departmentInstance}" field="name"/></span>
+					
+				</li>
+				</g:if>
+			
 				<g:if test="${departmentInstance?.company}">
 				<li class="fieldcontain">
 					<span id="company-label" class="property-label"><g:message code="department.company.label" default="Company" /></span>
@@ -32,11 +41,13 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${departmentInstance?.name}">
+				<g:if test="${departmentInstance?.employees}">
 				<li class="fieldcontain">
-					<span id="name-label" class="property-label"><g:message code="department.name.label" default="Name" /></span>
+					<span id="employees-label" class="property-label"><g:message code="department.employees.label" default="Employees" /></span>
 					
-						<span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${departmentInstance}" field="name"/></span>
+						<g:each in="${departmentInstance.employees}" var="e">
+						<span class="property-value" aria-labelledby="employees-label"><g:link controller="employee" action="show" id="${e.id}">${e?.encodeAsHTML()}</g:link></span>
+						</g:each>
 					
 				</li>
 				</g:if>

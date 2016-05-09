@@ -23,6 +23,7 @@ class BootStrap {
         HR_ROLE = new Role('ROLE_HR').save()
 
         // Test User - has all roles
+        /*
         def testUser = new User(username: 'me', password: 'password').save()
 
         UserRole.create testUser, ADMIN_ROLE, true
@@ -30,9 +31,10 @@ class BootStrap {
         UserRole.create(testUser, MANAGER_ROLE, true)
         UserRole.create(testUser, HR_ROLE, true)
 
-        assert User.count() == 1
-        assert Role.count() == 4
-        assert UserRole.count() == 4
+        //assert User.count() == 1
+        //assert Role.count() == 4
+        //assert UserRole.count() == 4
+        */
 
         // Create company
         Company company = new Company(name: 'A1 Company', domainName: 'a1company.com').save(flush: true)

@@ -43,7 +43,40 @@
         lacinia tincidunt.</p>
 
         <h2>Holiday Calendar</h2>
-
+        <table class="table table-bordered table-striped table-hover">
+            <thead>
+                <tr>
+                    <td>Date</td>
+                    <td>Holiday</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Friday January 1</td>
+                    <td>New Year's Day</td>
+                </tr>
+                <tr>
+                    <td>Monday January 18</td>
+                    <td>Martin Luther King Jr's Day	</td>
+                </tr>
+                <tr>
+                    <td>Lorem ipsum</td>
+                    <td>Lorem ipsum</td>
+                </tr>
+                <tr>
+                    <td>Lorem ipsum</td>
+                    <td>Lorem ipsum</td>
+                </tr>
+                <tr>
+                    <td>Lorem ipsum</td>
+                    <td>Lorem ipsum</td>
+                </tr>
+                <tr>
+                    <td>Lorem ipsum</td>
+                    <td>Lorem ipsum</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </sec:ifLoggedIn>
 </body>

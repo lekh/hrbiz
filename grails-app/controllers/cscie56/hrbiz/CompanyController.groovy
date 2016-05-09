@@ -1,10 +1,9 @@
 package cscie56.hrbiz
 
-import cscie56.hrbiz.Company
 import grails.plugin.springsecurity.annotation.Secured
+import grails.transaction.Transactional
 
 import static org.springframework.http.HttpStatus.*
-import grails.transaction.Transactional
 
 @Secured('ROLE_USER')
 @Transactional(readOnly = true)

@@ -20,13 +20,13 @@
 			<g:if test="${flash.message}">
 				<div class="message" role="status">${flash.message}</div>
 			</g:if>
-			<table>
+			<table class="table table-bordered table-striped table-hover">
 			<thead>
 					<tr>
 					
-						<th><g:message code="department.company.label" default="Company" /></th>
-					
 						<g:sortableColumn property="name" title="${message(code: 'department.name.label', default: 'Name')}" />
+					
+						<th><g:message code="department.company.label" default="Company" /></th>
 					
 					</tr>
 				</thead>
@@ -34,9 +34,9 @@
 				<g:each in="${departmentInstanceList}" status="i" var="departmentInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${departmentInstance.id}">${fieldValue(bean: departmentInstance, field: "company")}</g:link></td>
+						<td><g:link action="show" id="${departmentInstance.id}">${fieldValue(bean: departmentInstance, field: "name")}</g:link></td>
 					
-						<td>${fieldValue(bean: departmentInstance, field: "name")}</td>
+						<td>${fieldValue(bean: departmentInstance, field: "company")}</td>
 					
 					</tr>
 				</g:each>

@@ -1,17 +1,16 @@
 package cscie56.hrbiz
 
-import cscie56.hrbiz.DepartmentController
+import grails.plugin.springsecurity.SpringSecurityService
 import grails.test.mixin.*
 import spock.lang.*
 
 @TestFor(DepartmentController)
-@Mock(Department)
+@Mock([Department, Employee])
 class DepartmentControllerSpec extends Specification {
 
     def populateValidParams(params) {
         assert params != null
         // TODO: Populate valid properties like...
-
         Company company = new Company(name: 'A1 Company')
         params["name"] = 'Accounting'
         params["company"] = company
@@ -150,5 +149,16 @@ class DepartmentControllerSpec extends Specification {
             Department.count() == 0
             response.redirectedUrl == '/department/index'
             flash.message != null
+    }
+
+    void "test list all departments"() {
+        given:
+            def springSecurityService = mockFor(SpringSecurityService, true)
+            controller.springSecurityService = springSecurityService.createMock()
+        when:
+            Map model = controller.list()
+        then:
+            assert model.size() == 1
+            response.status == 200
     }
 }

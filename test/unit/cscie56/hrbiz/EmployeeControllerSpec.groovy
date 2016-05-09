@@ -1,6 +1,6 @@
 package cscie56.hrbiz
 
-import cscie56.hrbiz.EmployeeController
+import grails.plugin.springsecurity.SpringSecurityService
 import grails.test.mixin.*
 import spock.lang.*
 
@@ -163,4 +163,33 @@ class EmployeeControllerSpec extends Specification {
             response.redirectedUrl == '/employee/index'
             flash.message != null
     }
+
+    void "test show basic employee info"() {
+        when:
+            controller.showBasicInfo()
+        then:
+            response.status == 404  // For null employee
+    }
+
+    void "test show profile"() {
+        given:
+            def springSecurityService = mockFor(SpringSecurityService, true)
+            controller.springSecurityService = springSecurityService.createMock()
+        when:
+            Map model = controller.profile()
+        then:
+            assert model.size() == 2
+            response.status == 200
+    }
+
+    void "test edit profile"() {
+        given:
+            def springSecurityService = mockFor(SpringSecurityService, true)
+            controller.springSecurityService = springSecurityService.createMock()
+        when:
+            controller.profile()
+        then:
+            response.status == 200
+    }
+
 }

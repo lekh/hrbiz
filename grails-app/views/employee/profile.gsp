@@ -11,6 +11,10 @@
     <div id="profile">
         <h2>${profile.getName()}</h2>
 
+        <div>
+            <a class="btn btn-default pull-right" href="/hrbiz/employee/editProfile" data-toggle="modal" data-target="#editProfileModal">Edit Profile</a>
+        </div>
+
         <div class="row">
             <div class="col-sm-3">
                 <asset:image src="${profile.pictureLocation}" alt="${profile.getName()}"
@@ -37,26 +41,44 @@
                     <dt>Date Hired:<dt>
                     <dd><g:formatDate format="yyyy-MM-dd" date="${profile.dateHired}"/></dd>
 
+                    <dt>Social Security No:</dt>
+                    <dd>${profile.ssn}</dd>
+
                     <dt>Annual Salary:<dt>
                     <dd><g:formatNumber number="${profile.annualSalary}" type="currency" currencyCode="USD" /></dd>
 
                     <dt>Supervisor:<dt>
                     <dd>${profile.manager?.getName()}</dd>
+
+                    <dt>Address:</dt>
+                    <dd>${address}</dd>
+
+                    <dt>Bank Name:<dt>
+                    <dd>${profile.bankName}</dd>
+
+                    <dt>Routing No:<dt>
+                    <dd>${profile.routingNo}</dd>
+
+                    <dt>Account No:<dt>
+                    <dd>${profile.accountNo}</dd>
+
                 </dl>
                 <h4>About me</h4>
-                <div>
-                    <textarea id="textAboutMe" placeholder="Write something about yourself" style="width: 400px; height: 150px; border:solid 1px;">${profile.aboutMe}</textarea>
-                </div>
-                <div>
-                    <button type="button" class="btn btn-sm" onclick="saveAboutMe();">Save</button>
-                </div>
+                <p>${profile.aboutMe}</p>
+
+                <h4>Pay History</h4>
+                <pay:history/>
+
+                <h4>W2</h4>
+                <pay:w2/>
+
             </div>
         </div>
     </div>
 </div>
 
 <!-- employee Modal -->
-<div id="profileModal" class="modal fade">
+<div id="editProfileModal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
             <!-- content -->
@@ -64,8 +86,15 @@
     </div>
 </div>
 
+
+
 <!-- JS Handlers -->
 <script type="text/javascript">
+
+    // For modal
+    $('body').on('hidden.bs.modal', '.modal', function () {
+        $(this).removeData('bs.modal');
+    });
 
     function saveAboutMe() {
         var aboutMe = $('#textAboutMe').val();

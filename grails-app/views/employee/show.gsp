@@ -23,29 +23,29 @@
 			</g:if>
 			<ol class="property-list employee">
 			
-				<g:if test="${employeeInstance?.annualSalary}">
+				<g:if test="${employeeInstance?.username}">
 				<li class="fieldcontain">
-					<span id="annualSalary-label" class="property-label"><g:message code="employee.annualSalary.label" default="Annual Salary" /></span>
+					<span id="username-label" class="property-label"><g:message code="employee.username.label" default="Username" /></span>
 					
-						<span class="property-value" aria-labelledby="annualSalary-label"><g:fieldValue bean="${employeeInstance}" field="annualSalary"/></span>
+						<span class="property-value" aria-labelledby="username-label"><g:fieldValue bean="${employeeInstance}" field="username"/></span>
 					
 				</li>
 				</g:if>
 			
-				<g:if test="${employeeInstance?.pictureLocation}">
+				<g:if test="${employeeInstance?.password}">
 				<li class="fieldcontain">
-					<span id="pictureLocation-label" class="property-label"><g:message code="employee.pictureLocation.label" default="Picture Location" /></span>
+					<span id="password-label" class="property-label"><g:message code="employee.password.label" default="Password" /></span>
 					
-						<span class="property-value" aria-labelledby="pictureLocation-label"><g:fieldValue bean="${employeeInstance}" field="pictureLocation"/></span>
+						<span class="property-value" aria-labelledby="password-label"><g:fieldValue bean="${employeeInstance}" field="password"/></span>
 					
 				</li>
 				</g:if>
 			
-				<g:if test="${employeeInstance?.dateHired}">
+				<g:if test="${employeeInstance?.manager}">
 				<li class="fieldcontain">
-					<span id="dateHired-label" class="property-label"><g:message code="employee.dateHired.label" default="Date Hired" /></span>
+					<span id="manager-label" class="property-label"><g:message code="employee.manager.label" default="Manager" /></span>
 					
-						<span class="property-value" aria-labelledby="dateHired-label"><g:formatDate date="${employeeInstance?.dateHired}" /></span>
+						<span class="property-value" aria-labelledby="manager-label"><g:link controller="employee" action="show" id="${employeeInstance?.manager?.id}">${employeeInstance?.manager?.encodeAsHTML()}</g:link></span>
 					
 				</li>
 				</g:if>
@@ -55,6 +55,42 @@
 					<span id="department-label" class="property-label"><g:message code="employee.department.label" default="Department" /></span>
 					
 						<span class="property-value" aria-labelledby="department-label"><g:link controller="department" action="show" id="${employeeInstance?.department?.id}">${employeeInstance?.department?.encodeAsHTML()}</g:link></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${employeeInstance?.address}">
+				<li class="fieldcontain">
+					<span id="address-label" class="property-label"><g:message code="employee.address.label" default="Address" /></span>
+					
+						<span class="property-value" aria-labelledby="address-label"><g:link controller="employeeAddress" action="show" id="${employeeInstance?.address?.id}">${employeeInstance?.address?.encodeAsHTML()}</g:link></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${employeeInstance?.firstName}">
+				<li class="fieldcontain">
+					<span id="firstName-label" class="property-label"><g:message code="employee.firstName.label" default="First Name" /></span>
+					
+						<span class="property-value" aria-labelledby="firstName-label"><g:fieldValue bean="${employeeInstance}" field="firstName"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${employeeInstance?.middleName}">
+				<li class="fieldcontain">
+					<span id="middleName-label" class="property-label"><g:message code="employee.middleName.label" default="Middle Name" /></span>
+					
+						<span class="property-value" aria-labelledby="middleName-label"><g:fieldValue bean="${employeeInstance}" field="middleName"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${employeeInstance?.lastName}">
+				<li class="fieldcontain">
+					<span id="lastName-label" class="property-label"><g:message code="employee.lastName.label" default="Last Name" /></span>
+					
+						<span class="property-value" aria-labelledby="lastName-label"><g:fieldValue bean="${employeeInstance}" field="lastName"/></span>
 					
 				</li>
 				</g:if>
@@ -77,38 +113,65 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${employeeInstance?.firstName}">
+				<g:if test="${employeeInstance?.phoneNumber}">
 				<li class="fieldcontain">
-					<span id="firstName-label" class="property-label"><g:message code="employee.firstName.label" default="First Name" /></span>
+					<span id="phoneNumber-label" class="property-label"><g:message code="employee.phoneNumber.label" default="Phone Number" /></span>
 					
-						<span class="property-value" aria-labelledby="firstName-label"><g:fieldValue bean="${employeeInstance}" field="firstName"/></span>
+						<span class="property-value" aria-labelledby="phoneNumber-label"><g:fieldValue bean="${employeeInstance}" field="phoneNumber"/></span>
 					
 				</li>
 				</g:if>
 			
-				<g:if test="${employeeInstance?.lastName}">
+				<g:if test="${employeeInstance?.title}">
 				<li class="fieldcontain">
-					<span id="lastName-label" class="property-label"><g:message code="employee.lastName.label" default="Last Name" /></span>
+					<span id="title-label" class="property-label"><g:message code="employee.title.label" default="Title" /></span>
 					
-						<span class="property-value" aria-labelledby="lastName-label"><g:fieldValue bean="${employeeInstance}" field="lastName"/></span>
+						<span class="property-value" aria-labelledby="title-label"><g:fieldValue bean="${employeeInstance}" field="title"/></span>
 					
 				</li>
 				</g:if>
 			
-				<g:if test="${employeeInstance?.manager}">
+				<g:if test="${employeeInstance?.type}">
 				<li class="fieldcontain">
-					<span id="manager-label" class="property-label"><g:message code="employee.manager.label" default="Manager" /></span>
+					<span id="type-label" class="property-label"><g:message code="employee.type.label" default="Type" /></span>
 					
-						<span class="property-value" aria-labelledby="manager-label"><g:link controller="employee" action="show" id="${employeeInstance?.manager?.id}">${employeeInstance?.manager?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="type-label"><g:fieldValue bean="${employeeInstance}" field="type"/></span>
 					
 				</li>
 				</g:if>
 			
-				<g:if test="${employeeInstance?.middleName}">
+				<g:if test="${employeeInstance?.dateHired}">
 				<li class="fieldcontain">
-					<span id="middleName-label" class="property-label"><g:message code="employee.middleName.label" default="Middle Name" /></span>
+					<span id="dateHired-label" class="property-label"><g:message code="employee.dateHired.label" default="Date Hired" /></span>
 					
-						<span class="property-value" aria-labelledby="middleName-label"><g:fieldValue bean="${employeeInstance}" field="middleName"/></span>
+						<span class="property-value" aria-labelledby="dateHired-label"><g:formatDate date="${employeeInstance?.dateHired}" /></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${employeeInstance?.annualSalary}">
+				<li class="fieldcontain">
+					<span id="annualSalary-label" class="property-label"><g:message code="employee.annualSalary.label" default="Annual Salary" /></span>
+					
+						<span class="property-value" aria-labelledby="annualSalary-label"><g:fieldValue bean="${employeeInstance}" field="annualSalary"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${employeeInstance?.pictureLocation}">
+				<li class="fieldcontain">
+					<span id="pictureLocation-label" class="property-label"><g:message code="employee.pictureLocation.label" default="Picture Location" /></span>
+					
+						<span class="property-value" aria-labelledby="pictureLocation-label"><g:fieldValue bean="${employeeInstance}" field="pictureLocation"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${employeeInstance?.aboutMe}">
+				<li class="fieldcontain">
+					<span id="aboutMe-label" class="property-label"><g:message code="employee.aboutMe.label" default="About Me" /></span>
+					
+						<span class="property-value" aria-labelledby="aboutMe-label"><g:fieldValue bean="${employeeInstance}" field="aboutMe"/></span>
 					
 				</li>
 				</g:if>
@@ -122,11 +185,76 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${employeeInstance?.title}">
+				<g:if test="${employeeInstance?.bankName}">
 				<li class="fieldcontain">
-					<span id="title-label" class="property-label"><g:message code="employee.title.label" default="Title" /></span>
+					<span id="bankName-label" class="property-label"><g:message code="employee.bankName.label" default="Bank Name" /></span>
 					
-						<span class="property-value" aria-labelledby="title-label"><g:fieldValue bean="${employeeInstance}" field="title"/></span>
+						<span class="property-value" aria-labelledby="bankName-label"><g:fieldValue bean="${employeeInstance}" field="bankName"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${employeeInstance?.accountNo}">
+				<li class="fieldcontain">
+					<span id="accountNo-label" class="property-label"><g:message code="employee.accountNo.label" default="Account No" /></span>
+					
+						<span class="property-value" aria-labelledby="accountNo-label"><g:fieldValue bean="${employeeInstance}" field="accountNo"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${employeeInstance?.routingNo}">
+				<li class="fieldcontain">
+					<span id="routingNo-label" class="property-label"><g:message code="employee.routingNo.label" default="Routing No" /></span>
+					
+						<span class="property-value" aria-labelledby="routingNo-label"><g:fieldValue bean="${employeeInstance}" field="routingNo"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${employeeInstance?.accountExpired}">
+				<li class="fieldcontain">
+					<span id="accountExpired-label" class="property-label"><g:message code="employee.accountExpired.label" default="Account Expired" /></span>
+					
+						<span class="property-value" aria-labelledby="accountExpired-label"><g:formatBoolean boolean="${employeeInstance?.accountExpired}" /></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${employeeInstance?.accountLocked}">
+				<li class="fieldcontain">
+					<span id="accountLocked-label" class="property-label"><g:message code="employee.accountLocked.label" default="Account Locked" /></span>
+					
+						<span class="property-value" aria-labelledby="accountLocked-label"><g:formatBoolean boolean="${employeeInstance?.accountLocked}" /></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${employeeInstance?.enabled}">
+				<li class="fieldcontain">
+					<span id="enabled-label" class="property-label"><g:message code="employee.enabled.label" default="Enabled" /></span>
+					
+						<span class="property-value" aria-labelledby="enabled-label"><g:formatBoolean boolean="${employeeInstance?.enabled}" /></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${employeeInstance?.passwordExpired}">
+				<li class="fieldcontain">
+					<span id="passwordExpired-label" class="property-label"><g:message code="employee.passwordExpired.label" default="Password Expired" /></span>
+					
+						<span class="property-value" aria-labelledby="passwordExpired-label"><g:formatBoolean boolean="${employeeInstance?.passwordExpired}" /></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${employeeInstance?.paychecks}">
+				<li class="fieldcontain">
+					<span id="paychecks-label" class="property-label"><g:message code="employee.paychecks.label" default="Paychecks" /></span>
+					
+						<g:each in="${employeeInstance.paychecks}" var="p">
+						<span class="property-value" aria-labelledby="paychecks-label"><g:link controller="employeePaycheck" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link></span>
+						</g:each>
 					
 				</li>
 				</g:if>

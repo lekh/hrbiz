@@ -32,6 +32,35 @@
 				</li>
 				</g:if>
 			
+				<g:if test="${companyInstance?.description}">
+				<li class="fieldcontain">
+					<span id="description-label" class="property-label"><g:message code="company.description.label" default="Description" /></span>
+					
+						<span class="property-value" aria-labelledby="description-label"><g:fieldValue bean="${companyInstance}" field="description"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${companyInstance?.domainName}">
+				<li class="fieldcontain">
+					<span id="domainName-label" class="property-label"><g:message code="company.domainName.label" default="Domain Name" /></span>
+					
+						<span class="property-value" aria-labelledby="domainName-label"><g:fieldValue bean="${companyInstance}" field="domainName"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${companyInstance?.departments}">
+				<li class="fieldcontain">
+					<span id="departments-label" class="property-label"><g:message code="company.departments.label" default="Departments" /></span>
+					
+						<g:each in="${companyInstance.departments}" var="d">
+						<span class="property-value" aria-labelledby="departments-label"><g:link controller="department" action="show" id="${d.id}">${d?.encodeAsHTML()}</g:link></span>
+						</g:each>
+					
+				</li>
+				</g:if>
+			
 			</ol>
 			<g:form url="[resource:companyInstance, action:'delete']" method="DELETE">
 				<fieldset class="buttons">

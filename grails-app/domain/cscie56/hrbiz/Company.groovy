@@ -6,6 +6,8 @@ class Company {
     String description
     String domainName
 
+    static hasMany = [departments: Department]
+
     static constraints = {
         name(blank: false, nullable: false, unique: true)
         description nullable: true

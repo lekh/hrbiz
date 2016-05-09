@@ -1,17 +1,14 @@
 package cscie56.hrbiz
 
-import cscie56.hrbiz.Company
-import cscie56.hrbiz.Department
-import cscie56.hrbiz.Employee
-
 class EmployeeTagLib {
 
-    static defaultEncodeAs = [taglib:'text']
-
-    //static encodeAsForTags = [tagName: [taglib:'html'], otherTagName: [taglib:'none']]
+    static defaultEncodeAs = [taglib: 'text']
 
     static namespace = "employee"
 
+    /**
+     * List all employee. If department is not null it'll only display employees within the department.
+     */
     def list = { attrs, body ->
         Department department = attrs.department
 
@@ -30,6 +27,7 @@ class EmployeeTagLib {
             employee << ['phone': it.phoneNumber]
             employee << ['title': it.title]
             employee << ['department': it.department.name]
+            employee << ['manager': it.manager?.getName()]
             employee << ['type': it.type]
             employee << ['seniority': it.getSeniority()]
 

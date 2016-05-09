@@ -20,40 +20,40 @@
 			<g:if test="${flash.message}">
 				<div class="message" role="status">${flash.message}</div>
 			</g:if>
-			<table>
+			<table class="table table-bordered table-striped table-hover">
 			<thead>
 					<tr>
-					
-						<g:sortableColumn property="annualSalary" title="${message(code: 'employee.annualSalary.label', default: 'Annual Salary')}" />
-					
-						<g:sortableColumn property="pictureLocation" title="${message(code: 'employee.pictureLocation.label', default: 'Picture Location')}" />
-					
-						<g:sortableColumn property="dateHired" title="${message(code: 'employee.dateHired.label', default: 'Date Hired')}" />
-					
+
+						<g:sortableColumn property="username" title="${message(code: 'employee.username.label', default: 'Username')}" />
+
+						<g:sortableColumn property="firstName" title="${message(code: 'employee.firstName.label', default: 'First Name')}" />
+
+						<g:sortableColumn property="lastName" title="${message(code: 'employee.lastName.label', default: 'Last Name')}" />
+
 						<th><g:message code="employee.department.label" default="Department" /></th>
-					
-						<g:sortableColumn property="dob" title="${message(code: 'employee.dob.label', default: 'Dob')}" />
-					
+
+						<th><g:message code="employee.manager.label" default="Manager" /></th>
+
 						<g:sortableColumn property="email" title="${message(code: 'employee.email.label', default: 'Email')}" />
-					
+
 					</tr>
 				</thead>
 				<tbody>
 				<g:each in="${employeeInstanceList}" status="i" var="employeeInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-					
-						<td><g:link action="show" id="${employeeInstance.id}">${fieldValue(bean: employeeInstance, field: "annualSalary")}</g:link></td>
-					
-						<td>${fieldValue(bean: employeeInstance, field: "pictureLocation")}</td>
-					
-						<td><g:formatDate date="${employeeInstance.dateHired}" /></td>
-					
+
+						<td><g:link action="show" id="${employeeInstance.id}">${fieldValue(bean: employeeInstance, field: "username")}</g:link></td>
+
+						<td>${fieldValue(bean: employeeInstance, field: "firstName")}</td>
+
+						<td>${fieldValue(bean: employeeInstance, field: "lastName")}</td>
+
 						<td>${fieldValue(bean: employeeInstance, field: "department")}</td>
-					
-						<td><g:formatDate date="${employeeInstance.dob}" /></td>
-					
+
+						<td>${fieldValue(bean: employeeInstance, field: "manager")}</td>
+
 						<td>${fieldValue(bean: employeeInstance, field: "email")}</td>
-					
+
 					</tr>
 				</g:each>
 				</tbody>

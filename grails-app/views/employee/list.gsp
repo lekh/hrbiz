@@ -12,16 +12,17 @@
         <h2>${listType} Employees</h2>
 
         <!--<table id="employeeTable" class='table table-bordered table-striped table-hover dt-responsive nowrap'>-->
-        <table id="employeeTable" class="table display">
+        <table id="employeeTable" class="table table-bordered table-striped table-hover display">
             <thead>
                 <tr id='table-header'>
                     <th>Name</th>
-                    <th>Email</th>
-                    <th>Phone</th>
                     <th>Title</th>
                     <th>Department</th>
-                    <th>Type</th>
-                    <th>Seniority</th>
+                    <th>Manager</th>
+                    <th class="hidden-xs">Email</th>
+                    <th class="hidden-xs hidden-sm">Phone</th>
+                    <th class="hidden-xs hidden-sm">Type</th>
+                    <th class="hidden-xs hidden-sm">Seniority</th>
                 </tr>
             </thead>
             <tbody>

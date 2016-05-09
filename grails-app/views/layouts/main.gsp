@@ -38,7 +38,10 @@
                 <li><a href="/hrbiz/employee/profile">Profile</a></li>
 
                 <sec:ifAnyGranted roles="ROLE_MANAGER">
-                    <li><a href="/hrbiz/manager">Manager Menu</a></li>
+                    <li><a href="/hrbiz/admin/manager">Manager Menu</a></li>
+                </sec:ifAnyGranted>
+                <sec:ifAnyGranted roles="ROLE_HR">
+                    <li><a href="/hrbiz/admin/hr">HR Menu</a></li>
                 </sec:ifAnyGranted>
                 <sec:ifAnyGranted roles="ROLE_ADMIN">
                     <li><a href="/hrbiz/admin">Admin Menu</a></li>

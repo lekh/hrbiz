@@ -1,6 +1,5 @@
 package cscie56.hrbiz
 
-import cscie56.hrbiz.PhoneTagLib
 import grails.test.mixin.TestFor
 import spock.lang.Specification
 
@@ -16,6 +15,12 @@ class PhoneTagLibSpec extends Specification {
     def cleanup() {
     }
 
-    void "test something"() {
+    void "test format phone number"() {
+        when:
+            Map values = ['phoneNo': 6175568957]
+            def template = '<phone:formatNumber number="${phoneNo}" />'
+            def result = applyTemplate(template, values)
+        then:
+            assert result == '(617) 556-8957'
     }
 }
