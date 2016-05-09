@@ -16,3 +16,4 @@ Final project for CSCI E-56 - Human Resources Management for Small Business
 * Home page contains basic information about the company
 * Usernames are: `first inital + last name (lowercase)`
 * Passwords are: `password`
+* Localhost url - http://localhost:8080/hrbiz/
